@@ -6,7 +6,7 @@ module.exports = {
     default: {
       adapter: 'sails-mysql',
       host: 'localhost',
-      database: 'contactsDbTest;',
+      database: 'contactsDbTest',
       port: 3306,
       user: 'root',
       password: ''
