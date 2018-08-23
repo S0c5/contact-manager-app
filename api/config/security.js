@@ -14,7 +14,6 @@
  */
 
 module.exports.security = {
-
   /***************************************************************************
   *                                                                          *
   * CORS is like a more modern version of JSONP-- it allows your application *
@@ -29,11 +28,10 @@ module.exports.security = {
   ***************************************************************************/
 
   cors: {
-     allRoutes: false,
-     allowOrigins: '*',
-     allowCredentials: false,
+    allRoutes: false,
+    allowOrigins: '*',
+    allowCredentials: false,
   },
-
 
   /****************************************************************************
   *                                                                           *
@@ -50,5 +48,4 @@ module.exports.security = {
   ****************************************************************************/
 
   // csrf: false
-
 };
