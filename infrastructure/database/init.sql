@@ -1,0 +1,4 @@
+CREATE DATABASE contactsDbTest;
+CREATE DATABASE contactsDbDev;
+CREATE DATABASE contactsDbStg;
+CREATE DATABASE contactsDb;
