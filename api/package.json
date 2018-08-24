@@ -33,8 +33,9 @@
   "scripts": {
     "start": "node app.js",
     "start:dev": "NODE_ENV=development node app.js",
-    "test": "npm run lint && NODE_ENV=test npm run custom-tests && echo 'Done.'",
-    "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
+    "test": "npm run lint && NODE_ENV=test npm run code-cov && echo 'Done.'",
+    "lint": "rm -rf coverage && eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
+    "code-cov": "cross-env NODE_NO_WARNINGS=1 NODE_ENV=test nyc --reporter=lcov --reporter=text mocha ./test",
     "custom-tests": "NODE_NO_WARNINGS=1 mocha ./test"
   },
   "main": "app.js",
