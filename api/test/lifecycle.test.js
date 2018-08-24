@@ -1,18 +1,13 @@
 import { promisify } from 'util';
 import sails from 'sails';
 import supertest from 'supertest';
-import Q from 'q';
+import cleanDb from './utils/clean-db';
 
 
 
 before(async () => {
   await promisify(sails.lift)({log: { level: 'warn' }});
   global.request = supertest(sails.hooks.http.app);
-
+  global.cleanDb = cleanDb;
   // this clear the database by each test
-
-  await Object.keys(sails.models)
-  .map(_modelName => sails.models[_modelName])
-  .map(async _model => await _model.destroy({}))
-  .reduce(Q.when, Q.resolve());
 });

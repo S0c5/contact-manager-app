@@ -6,6 +6,7 @@ describe('Endpoints:Contact', () => {
     phone: '+573123488123',
     email: 'd@barinas.com',
   };
+  before(() => cleanDb());
 
   describe('#Create - POST /contacts', () => {
     it('when i send invalid information it should return a 400 with a list of errors', () => {
@@ -19,9 +20,8 @@ describe('Endpoints:Contact', () => {
         .expect(400)
         .then(res => res.body)
         .then(body => {
-          body.error.code.should.equal(400);
-          body.error.message.should.be.equal('validation failed');
-          body.error.details.length.should.be.above(0);
+          body.error.code.should.equal('E_INVALID_NEW_RECORD');
+          body.error.message.should.match(/Invalid new record./);
         });
     });
 
@@ -35,45 +35,24 @@ describe('Endpoints:Contact', () => {
           body.name.should.be.equal(contact.name);
           body.email.should.be.equal(contact.email);
           body.phone.should.be.equal(contact.phone);
-          body.profileImage.should.be.equal(null);
+          should(body.profileImage).equal(null);
           contact = body;
         });
     });
   });
 
-  describe('#UploadImage - PUT /contacts/:id/image', () => {
-    it('when I try to upload a invalid format type it should thows an exception', () => {
-      return request
-        .put(`/contacts/${contact.id}`)
-        .attach('image', path.resolve(`${__dirname}/../../fixtures/non-image.txt`))
-        .expect(400)
-        .then(res => res.body)
-        .then(body => {
-          body.error.code.should.equal(400);
-          body.error.message.should.equal('invalid format');
-        });
-    });
-
-    it('when I upload a valid image it should upload it to s3 and patch and retrieve me the contact', () => {
-      return request
-        .put(`/contacts/${contact.id}`)
-        .attach('image', path.resolve(`${__dirname}/../../fixtures/avatar.jpg`))
-        .expect(200)
-        .then(res => res.body)
-        .then(body => {
-          body.name.should.be.equal(contact.name);
-          body.email.should.be.equal(contact.email);
-          body.phone.should.be.equal(contact.phone);
-          body.profileImage.should.match(/http/);
-        });
-    });
-  });
 
   describe('#Read - GET /contacts/:id ', () => {
-    it('when I try to read a contact that doesnt exists it should return 400 error code', () => {
+    it('when I try to read a contact with invalid id it should return 400 error code', () => {
       return request
         .get('/contacts/batman')
         .expect(400);
+    });
+
+    it('when I try to read a contact that doesnt exists it should return 404 error code', () => {
+      return request
+        .get('/contacts/10')
+        .expect(404);
     });
 
     it('I can retrieve a contact info with by the id', () => {
@@ -85,10 +64,38 @@ describe('Endpoints:Contact', () => {
           body.name.should.be.equal(contact.name);
           body.email.should.be.equal(contact.email);
           body.phone.should.be.equal(contact.phone);
-          body.profileImage.should.match(/http/);
+          should(body.profileImage).equal(null);
         });
     });
   });
+
+  describe('#UploadImage - PUT /contacts/:id/image', () => {
+    it('when I try to upload a invalid format type it should thows an exception', () => {
+      return request
+        .put(`/contacts/${contact.id}/image`)
+        .attach('image', path.resolve(`${__dirname}/../../fixtures/non-image.txt`))
+        .expect(400)
+        .then(res => res.body)
+        .then(body => {
+          body.error.code.should.equal('E_INVALID_FORMAT');
+        });
+    });
+
+    it('when I upload a valid image it should upload it to s3 and patch and retrieve me the contact', () => {
+      return request
+        .put(`/contacts/${contact.id}/image`)
+        .attach('image', path.resolve(`${__dirname}/../../fixtures/avatar.jpg`))
+        .expect(200)
+        .then(res => res.body)
+        .then(body => {
+          body.name.should.be.equal(contact.name);
+          body.email.should.be.equal(contact.email);
+          body.phone.should.be.equal(contact.phone);
+          body.profileImage.should.not.be.equal(null);
+        });
+    });
+  });
+
 
   describe('#list - GET /contacts', () => {
     it('I can filter the contacts passing a query in a url', () => {
@@ -101,7 +108,7 @@ describe('Endpoints:Contact', () => {
           body[0].name.should.be.equal(contact.name);
           body[0].email.should.be.equal(contact.email);
           body[0].phone.should.be.equal(contact.phone);
-          body[0].profileImage.should.match(/http/);
+          body[0].profileImage.should.not.be.equal(null);
         });
     });
 
