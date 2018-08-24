@@ -1,5 +1,0 @@
-describe('Policy:onlyAllowFileFormat', () => {
-  it('', () => {
-
-  });
-});
