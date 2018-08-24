@@ -33,7 +33,8 @@ $ make run-dev
 $ cd ./api && npm start
 ```
 
-***APP***: ```bash 
+***APP***:
+```bash 
 $ cd ./app && npm start
 ```
 
