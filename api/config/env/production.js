@@ -3,7 +3,7 @@ module.exports = {
     default: {
       adapter: 'sails-mysql',
       host: 'localhost',
-      database: 'contactsDbDev',
+      database: 'contactsDb',
       port: 3306,
       user: 'root',
       password: ''
@@ -13,12 +13,12 @@ module.exports = {
     migrate: 'safe',
   },
   sockets: {
-    onlyAllowOrigins: [ 'https://app.minero.co', 'http://localhost']
+    onlyAllowOrigins: ['http://localhost:3000', 'https://app.minero.co', 'http://localhost']
   },
   security: {
     cors: {
       allRoutes: true,
-      allowOrigins: [ 'https://app.minero.co', 'http://localhost'],
+      allowOrigins: ['http://localhost:3000', 'https://app.minero.co', 'http://localhost'],
       allowCredentials: true,
     },
   },
