@@ -37,11 +37,11 @@
     "supertest": "^3.1.0"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "NODE_NO_WARNINGS=1 babel-node app.js",
     "start:dev": "NODE_ENV=development node app.js",
-    "test": "npm run lint && NODE_ENV=test npm run custom-tests && echo 'Done.'",
-    "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
-    "custom-tests": "NODE_NO_WARNINGS=1 mocha ./test"
+    "test": "npm run lint && npm run custom-test && echo 'Done.'",
+    "lint": "rm -rf coverage && eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
+    "custom-test": "cross-env nyc --reporter=lcov --reporter=text mocha ./test"
   },
   "main": "app.js",
   "repository": {
