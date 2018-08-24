@@ -1,0 +1,10 @@
+.ContactCardDetail {
+   &__media {
+    background-size: cover;
+    height: 180px;
+   }
+   &__actions {
+       display: flex;
+       justify-content: space-between;
+   }
+}

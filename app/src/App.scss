@@ -1,0 +1,58 @@
+.alertDialog {
+  background-color: #4caf50 !important;
+  &.error {
+    background-color: #f50057 !important;
+  }
+}
+
+.ContactsApp {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 100vw;
+
+  &__header {
+    
+    &__text {
+      text-align: center;
+      flex-grow: 1;
+    }
+  }
+  &__main {
+    display: flex;
+    flex-wrap: wrap;
+    @media screen and (max-width: 900px){
+      flex-direction: column;
+    }
+    & > section {
+      @media screen and (max-width: 900px){
+        width: 100%;
+      }
+      width: 50%;
+    }
+    &__list {
+      display: flex;
+      justify-content: center;
+      @media screen and (max-width: 900px){
+        order: 2;
+      }
+      max-height: 100vh;
+      min-height: 100vh;
+      overflow-x: scroll;
+    }
+    &__view {
+      @media screen and (max-width: 900px){
+        order: 1;
+      }
+    }
+  }
+
+  footer {
+    button {
+      position: fixed;
+      bottom: 40px;
+      right: 20px;
+    }
+  }
+
+}
