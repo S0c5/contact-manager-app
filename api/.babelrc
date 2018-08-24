@@ -1,7 +1,19 @@
 {
-    "presets": [["env", {
+  "presets": [
+    [
+      "env",
+      {
         "targets": {
-            "node": "current"
+          "node": "current"
         }
-    }]]
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }
 }

@@ -1,12 +1,10 @@
 describe('Model:Contact', () => {
   let contact;
 
-  before(async () => {
-
-  });
+  before(() => cleanDb());
 
   it('#create', async () => {
-    contact = await Contact.createOne({
+    contact = await Contact.createAndRetrieve({
       name: 'david barinas',
       phone: '+573123488123',
       email: 'd@barinas.com',
@@ -37,5 +35,10 @@ describe('Model:Contact', () => {
     _contacts[0].phone.should.be.equal(contact.phone);
     _contacts[0].email.should.be.equal(contact.email);
     _contacts[0].profileImage.should.be.equal(contact.profileImage);
+  });
+
+  it('#findOneAndUpdate', async () => {
+    const _contact = await Contact.findOneAndUpdate({ id: contact.id }, { profileImage: 'custom_image' });
+    _contact.profileImage.should.be.equal('custom_image');
   });
 });
