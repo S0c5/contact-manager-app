@@ -7,6 +7,7 @@ module.exports = function uploadOneFile(name) {
     const { custom: { s3: s3Config } } = sails.config;
     let file = null;
 
+    /* istanbul ignore else */
     if (!s3Config.enabled) {
       file = await UploadFileAsPromise();
     } else {

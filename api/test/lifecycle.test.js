@@ -11,3 +11,7 @@ before(async () => {
   global.cleanDb = cleanDb;
   // this clear the database by each test
 });
+
+after(async () => {
+  await promisify(sails.lower)();
+});

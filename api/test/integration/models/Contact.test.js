@@ -37,8 +37,15 @@ describe('Model:Contact', () => {
     _contacts[0].profileImage.should.be.equal(contact.profileImage);
   });
 
-  it('#findOneAndUpdate', async () => {
-    const _contact = await Contact.findOneAndUpdate({ id: contact.id }, { profileImage: 'custom_image' });
-    _contact.profileImage.should.be.equal('custom_image');
+  describe('#findOneAndUpdate', async () => {
+    it('should returns null if a contact isnt found', async () => {
+      const _contact = await Contact.findOneAndUpdate({ id: 1000 }, { profileImage: 'custom_image' });
+      should(_contact).be.equal(null);
+    });
+
+    it('it should update a contact if match with the query', async () => {
+      const _contact = await Contact.findOneAndUpdate({ id: contact.id }, { profileImage: 'custom_image' });
+      _contact.profileImage.should.be.equal('custom_image');
+    });
   });
 });
