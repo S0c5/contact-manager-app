@@ -21,7 +21,8 @@ module.exports = {
     },
     profileImage: {
       type: 'string',
-      required: true,
+      required: false,
+      allowNull: true
     }
   },
   createOne: async function(data){
