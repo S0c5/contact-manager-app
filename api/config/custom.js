@@ -9,7 +9,9 @@
  */
 
 module.exports.custom = {
-
+  s3: {
+    enabled: false,
+  }
   /***************************************************************************
   *                                                                          *
   * Any other custom config this Sails app should use during development.    *

@@ -1,3 +1,6 @@
+import uploadOneFile from '../api/policies/uploadOneFile';
+import onlyAllowFileFormat from '../api/policies/onlyAllowFileFormat';
+
 /**
  * Policy Mappings
  * (sails.config.policies)
@@ -18,5 +21,10 @@ module.exports.policies = {
   ***************************************************************************/
 
   // '*': true,
-
+  ContactController: {
+    uploadImage: [
+      uploadOneFile('image'),
+      onlyAllowFileFormat('image', ['image'])
+    ]
+  },
 };
