@@ -28,7 +28,7 @@ module.exports = {
   uploadImage: async (req, res) => {
     const { id } = req.params;
 
-    Contact.findOneAndUpdate({ id }, { profileImage: _.get(req.body.image, 'extra.Location', req.body.image.fd) })
+    Contact.findOneAndUpdate({ id }, { profileImage: _.get(req.body.image, 'extra.Location', `file://${req.body.image.fd}`) })
       .then(res.success)
       .catch(res.error);
   }

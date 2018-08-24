@@ -1,0 +1,35 @@
+.ContactCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media screen and (max-width: 400px){
+        min-width: 370px;
+        max-width: 370px;
+    }
+    min-width: 440px;
+    max-width: 440px;
+    &__details {
+        display: flex;
+        flex-direction: column;
+        &__content {
+            flex: 1 0 auto;
+        }
+        &__controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 10px;
+            padding-bottom: 10px;
+            &__play {
+                height: 38px;
+                width: 38px;
+            }
+        }
+    }
+    &__media {
+        border-radius: 50%;
+        min-width: 120px;
+        min-height: 120px;
+        margin-right: 10px;
+    }
+}
