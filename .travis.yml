@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - "9"
+services:
+    - mysql
+env:
+    - NODE_ENV=test
+before_install:
+    - "cd api && npm install"
+    - mysql -e 'CREATE DATABASE contactsDbTest;'
+script:
+    - cd api && npm test
