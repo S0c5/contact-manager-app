@@ -6,7 +6,7 @@ const config = {
         api: 'http://localhost:1337'
     },
     production: {
-        api: 'http://localhost:1337'
+        api: 'https://app.minero.co/api/v1'
     }
 };
 
