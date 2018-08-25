@@ -1,12 +1,14 @@
 module.exports = {
+  blueprints: {
+    actions: false,
+    rest: true,
+    shortcuts: false,
+    pluralize: true,
+  },
   datastores: {
     default: {
       adapter: 'sails-mysql',
-      host: 'localhost',
-      database: 'contactsDb',
-      port: 3306,
-      user: 'root',
-      password: ''
+      url: process.env.DATABASE_URI || 'mysql://root@mysql:3306/contactsDb',
     },
   },
   models: {

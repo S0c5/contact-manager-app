@@ -132,3 +132,5 @@ lib-cov
 
 coverage
 .nyc_output
+config.env
+build
