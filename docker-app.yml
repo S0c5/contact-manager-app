@@ -1,0 +1,41 @@
+version: '3'
+services: 
+  web:
+    build: ./nginx
+    links:
+      - api
+    environment:
+      HOST_NAME: ${HOST_NAME}
+      APP_PORT: ${PORT}
+    volumes:
+      - nginx-certs:/etc/nginx/certs:ro
+    ports:
+      - 80:80
+      - 443:443
+    restart: "no"
+  api:
+    build: './api'
+    links:
+      - mysql
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_ACCESS_SECRET_KEY: ${AWS_ACCESS_SECRET_KEY}
+      AWS_BUCKET_NAME: ${AWS_BUCKET_NAME}
+      DATABASE_URI: ${DATABASE_URI}
+      NODE_ENV: ${NODE_ENV}
+      DEBUG: response:error
+      PORT: ${PORT}
+    ports: 
+      - 1337:1337
+  mysql:
+    build: './infrastructure/database/'
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    volumes:
+       - db-data:/var/lib/mysql/data
+    ports:
+      - 3306:3306
+  
+volumes:
+  nginx-certs:
+  db-data:
