@@ -14,7 +14,7 @@ this contact manager app allows to create, list and retrieve information about y
 - docker >18.06 and docker-compose >1.22.0
 - gettext ( install it by `brew install gettext && brew link --force gettext` )
 
-Please install all requirements using: 
+Please install all `npm` libraries using: 
 
 ```bash
   $ make prepare
@@ -68,6 +68,7 @@ $ npm test
 2. point to your domain `example.com` to the ip of your instance.
 3. Edit `config.env` to add: 
    ```bash
+      HOST_NAME={HOST_NAME}
       EMAIL={EMAIL}
       PORT={API_PORT}
       AWS_ACCESS_KEY_ID={ACCESS_KEY_ID_FOR_S3}
@@ -99,7 +100,8 @@ $ npm test
 1. Create your instance using docker machine 
 3. Edit `config.env` to add: 
    ```bash
-      EMAIL={EMAIL} // optional
+      HOST_NAME={HOST_NAME} // OPTIONAL
+      EMAIL={EMAIL} // OPTIONAL
       PORT={API_PORT}
       AWS_ACCESS_KEY_ID={ACCESS_KEY_ID_FOR_S3}
       AWS_ACCESS_SECRET_KEY={AWS_ACCESS_SECRET_KEY_FOR_S3}
