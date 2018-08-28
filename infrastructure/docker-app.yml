@@ -1,7 +1,7 @@
 version: '3'
 services: 
   web:
-    build: ./infrastructure/nginx
+    build: ./nginx
     links:
       - api
     environment:
@@ -14,7 +14,7 @@ services:
       - 443:443
     restart: "no"
   api:
-    build: './api'
+    build: '../api'
     links:
       - mysql
     environment:
@@ -28,7 +28,7 @@ services:
     ports: 
       - 1337:1337
   mysql:
-    build: './infrastructure/database/'
+    build: './database/'
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
     volumes:
