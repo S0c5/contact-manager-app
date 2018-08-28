@@ -52,6 +52,9 @@ class App extends Component {
     document.removeEventListener('alert:open');
   }
 
+  scrollTop(){
+    window.scrollTo({top: 0});
+  }
 
   render() {
     return (
@@ -80,7 +83,7 @@ class App extends Component {
           </main>
           <footer>
             <Link to='/new'>
-              <Button variant="fab" color="secondary" aria-label="Add" >
+              <Button variant="fab" color="secondary" aria-label="Add" onClick={this.scrollTop.bind(this)} >
                 <AddIcon />
               </Button>
             </Link>

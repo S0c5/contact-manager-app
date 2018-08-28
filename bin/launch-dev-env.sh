@@ -8,7 +8,7 @@ database() {
   osascript \
   -e 'tell application "iTerm" to activate' \
   -e 'tell application "System Events" to tell process "iTerm" to keystroke "t" using command down' \
-  -e 'tell application "System Events" to tell process "iTerm" to keystroke "cd '$(pwd)'; cd infrastructure; docker-compose -f local-db.yml up;"' \
+  -e 'tell application "System Events" to tell process "iTerm" to keystroke "cd '$(pwd)'; cd infrastructure/database; docker-compose -f local-db.yml up;"' \
   -e 'tell application "System Events" to tell process "iTerm" to key code 52'
 }
 
@@ -43,7 +43,7 @@ run_dev(){
     open_iterm
     sleep 5
     database
-    sleep 8
+    sleep 15
     api
     sleep 2
     app

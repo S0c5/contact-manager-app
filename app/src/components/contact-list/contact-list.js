@@ -24,14 +24,20 @@ class ContactList extends Component {
       });
     });
   }
+  
   componentDidMount() {
     this.listContacts();
     document.addEventListener('contact:list', () => {
       this.listContacts();
     });
   }
+
   componentWillUnmount(){
     document.removeEventListener('contact:list');
+  }
+
+  scrollTop(){
+    window.scrollTo({top: 0});
   }
 
   render() {
@@ -42,7 +48,7 @@ class ContactList extends Component {
             (contacts.length > 0) && (
               <List>
                 {contacts.map((contact, id) => (
-                  <ListItem>
+                  <ListItem onClick={this.scrollTop.bind(this)}>
                     <Link to={`/c/${contact.id}`}>
                       <Contact info={contact}></Contact>
                     </Link>

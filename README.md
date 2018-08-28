@@ -1,14 +1,39 @@
 # Contact Manager App 
 [![Build Status](https://travis-ci.com/S0c5/contact-manager-app.svg?branch=develop)](https://travis-ci.com/S0c5/contact-manager-app)
 
-### Description
-  
+## Description
+
 this contact manager app allows to create, list and retrieve information about your contacts! AWESOME!.
 
+## Problem
 
-### Development
+the problem is: [raxua-contact-manager-app](https://github.com/RauxaRepo/Node-Sails-Coding-Challenge/blob/master/coding_challenge.md), 
 
-#### Requirements (OSX): 
+## Solution
+
+One Application that allows to a customer the creation, listing and detail of him/her contacts. This application has the next techs and architecture.
+
+## Architecture
+
+-  **Root**: Configuration Files to deploy.
+-  **Backend**: API Rest JSON based on Sails.js framework.
+-  **Frontend**:  React Application.
+-  **Infrastructure**:  Nginx with reverse proxy with docker container for the applications, I implemented scripts to automate the deployment using docker-machine with docker-compose.
+
+
+## Folders
+
+```
+/api: api made in sails
+/app: React App
+/infrastructure: files realted to the infrastructure it includes files of configure docker-compose, sql to seed databases. 
+  /database: sql files to seed application
+  /nginx: Dockerfile to configure the nginx reversed proxy
+```
+
+## Development 
+
+### Requirements (OSX): 
 
 - Node v10 ( use [NVM](https://github.com/creationix/nvm))
 - docker >18.06 and docker-compose >1.22.0
@@ -20,25 +45,25 @@ Please install all `npm` libraries using:
   $ make prepare
 ```
 
-#### Run 
+### RUN 
 
-run the both apps ( the `api` and `app`) run: 
+to run the both apps ( the `api` and `app`) run: 
 
 ```bash
 $ make run-dev
 ```
 
-***API***:
+**API**:
 ```bash 
 $ cd ./api && npm start
 ```
 
-***APP***:
+**APP**:
 ```bash 
 $ cd ./app && npm start
 ```
 
-#### Test
+### Test
 
 to test the API please go to /api and run 
 
@@ -46,10 +71,10 @@ to test the API please go to /api and run
 $ npm test
 ```
 
-### deployment
+## Deployment
 
 
-#### Prerequisite
+#### prerequisite
 
 1. ***NOTE:*** read the requirements of development too.
 2. ***NOTE:*** create or use one account in google or amazon.
@@ -122,7 +147,7 @@ $ npm test
 ```
 
 
-### Issues
+## Issues
 
 Please feel free to contribute to this repository:
 
@@ -132,9 +157,10 @@ Please feel free to contribute to this repository:
 
 
 
+## Author
 
+David Barinas
 
-
-
+* [linkedin](https://www.linkedin.com/in/davidbarinas/)
 
 
